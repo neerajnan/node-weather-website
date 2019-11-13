@@ -5,6 +5,7 @@ const forecast = require('./utils/forecast')
 const geocode = require('./utils/geocode')
 
 const app = express()
+const port = process.env.PORT || 3000
 
 //Define paths for Express config
 const publicDirectory = path.join(__dirname, '../public')
@@ -17,7 +18,7 @@ app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
 
-clsapp.use(express.static(publicDirectory))
+app.use(express.static(publicDirectory))
 
 
 app.get('', (req, res) => {
@@ -95,6 +96,6 @@ app.get('/help/*', (req, res) => {
     })
    })
 
-app.listen('3000', () => {
+app.listen(port, () => {
     console.log('Server up and running!')
 })
